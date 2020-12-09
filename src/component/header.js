@@ -37,6 +37,17 @@ class header extends React.Component {
     const systemVariables = SystemVariables;
     const { classes } = this.props;
 
+    const renderIcons = (param) => {
+      switch(param) {
+        case 0:
+          return <InboxIcon />;
+        case 1:
+          return <MailIcon />;
+        default:
+          return <MailIcon />;
+      }
+    }
+
     return (
       <div className={classes.root}>
         <CssBaseline />
@@ -65,7 +76,7 @@ class header extends React.Component {
                       header.items.map((item, index) => {
                         return (
                           <ListItem button key={item.title}>
-                            <ListItemIcon>{item.icon === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                            <ListItemIcon>{renderIcons(item.icon)}</ListItemIcon>
                             <ListItemText primary={item.title} />
                           </ListItem>
                         );
