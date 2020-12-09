@@ -1,0 +1,8 @@
+.main {
+  margin: 0;
+  height: 100%;
+}
+#root, body, html {
+  height: 100%;
+  margin: 0;
+}

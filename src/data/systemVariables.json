@@ -1,0 +1,51 @@
+{
+	"name": "Martyn's Barbers - Appointments Client Panel",
+	"headers": [
+        {
+            "name": "First Header",
+            "items": [
+                {
+                    "enabled": true,
+                    "title": "Appointments",
+                    "icon": 1,
+                    "description": "Taking it down a notch and keeping the vibes on ice..."
+                },
+                {
+                    "enabled": true,
+                    "title": "Customer",
+                    "icon": 0,
+                    "description": "Taking it down a notch and keeping the vibes on ice..."
+                },
+                {
+                    "enabled": true,
+                    "title": "Staff",
+                    "icon": 1,
+                    "description": "Taking it down a notch and keeping the vibes on ice..."
+                }
+            ]
+        },
+        {
+            "name": "Second Header",
+            "items": [
+                {
+                    "enabled": true,
+                    "title": "System Manager",
+                    "icon": 0,
+                    "description": "Taking it down a notch and keeping the vibes on ice..."
+                },
+                {
+                    "enabled": true,
+                    "title": "Reports",
+                    "icon": 1,
+                    "description": "Taking it down a notch and keeping the vibes on ice..."
+                },
+                {
+                    "enabled": true,
+                    "title": "Administrators",
+                    "icon": 1,
+                    "description": "Taking it down a notch and keeping the vibes on ice..."
+                }
+            ]
+        }
+	]
+}
