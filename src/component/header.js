@@ -1,10 +1,13 @@
 import React from "react";
 import { withStyles } from '@material-ui/core/styles';
 import { Drawer, AppBar, CssBaseline, Toolbar, List, Typography, Divider, ListItem, ListItemIcon, ListItemText  } from '@material-ui/core';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import TodayIcon from '@material-ui/icons/Today';
+import PeopleIcon from '@material-ui/icons/People';
+import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
+import SettingsIcon from '@material-ui/icons/Settings';
+import AssessmentIcon from '@material-ui/icons/Assessment';
 
-import SystemVariables from "../data/systemVariables.json"; 
+import SystemSettings from "../data/systemSettings.json"; 
 
 const drawerWidth = 240;
 
@@ -34,17 +37,23 @@ const  useStyles = theme => ({
 
 class Header extends React.Component {
   render() {
-    const systemVariables = SystemVariables;
+    const systemSettings = SystemSettings;
     const { classes } = this.props;
 
     const renderIcons = (param) => {
       switch(param) {
         case 0:
-          return <InboxIcon />;
+          return <TodayIcon />;
         case 1:
-          return <MailIcon />;
+          return <PeopleIcon />;
+        case 2:
+          return <SupervisedUserCircleIcon />;
+        case 3:
+          return <AssessmentIcon />;
+        case 4:
+          return <SettingsIcon />;
         default:
-          return <MailIcon />;
+          return <SupervisedUserCircleIcon />;
       }
     }
 
@@ -54,7 +63,7 @@ class Header extends React.Component {
         <AppBar position="fixed" className={classes.appBar}>
           <Toolbar>
             <Typography variant="h6" noWrap>
-              {systemVariables.name}
+              {systemSettings.name}
             </Typography>
           </Toolbar>
         </AppBar>
@@ -67,14 +76,14 @@ class Header extends React.Component {
           <Toolbar />
           <div className={classes.drawerContainer}>
             {
-              systemVariables.headers.map((header, index) => {
+              systemSettings.headers.map((header, index) => {
                 return (
                 <div key={index}>
                   <List>
                     {
                       header.items.map((item, indexHeader) => {
                         return (
-                          <ListItem button key={indexHeader}>
+                          <ListItem button key={indexHeader} >
                             <ListItemIcon>{renderIcons(item.icon)}</ListItemIcon>
                             <ListItemText primary={item.title} />
                           </ListItem>

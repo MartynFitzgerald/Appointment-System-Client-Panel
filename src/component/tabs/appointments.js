@@ -1,7 +1,6 @@
 import React from "react";
 import { withStyles } from '@material-ui/core/styles';
 import { Typography, Toolbar } from '@material-ui/core';
-import "./library.css";
 
 const  useStyles = theme => ({
   root: {
@@ -14,7 +13,7 @@ const  useStyles = theme => ({
 }
 );
 
-class Library extends React.Component {
+class Appointments extends React.Component {
   render() {
     const { classes } = this.props;
 
@@ -39,4 +38,4 @@ class Library extends React.Component {
   }
 }
 
-export default withStyles(useStyles, { withTheme: true })(Library);
+export default withStyles(useStyles, { withTheme: true })(Appointments);
