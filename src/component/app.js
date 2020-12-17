@@ -32,10 +32,10 @@ export default function App() {
   });
   
   return (
-    <Switch>
       <div className={classes.root}>
         <Header/>
         <main className={classes.main}>
+          <Switch>
             <Route path="/appointments" component={Appointments} exact />
             <Route path="/customers" component={Customers} exact />
             <Route path="/staffs" component={Staffs} exact />
@@ -43,8 +43,8 @@ export default function App() {
             <Route path="/reports" component={Reports} exact />
             <Route path="/administrators" component={Administrators} exact />
             <Route component={Error} />
+          </Switch>
         </main>
       </div>
-    </Switch>
   )
 }
