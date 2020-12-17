@@ -10,8 +10,7 @@ const  useStyles = theme => ({
     flexGrow: 1,
     padding: theme.spacing(3),
   },
-}
-);
+});
 
 class Appointments extends React.Component {
   render() {

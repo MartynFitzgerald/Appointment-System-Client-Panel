@@ -20,8 +20,8 @@
                 },
                 {
                     "enabled": true,
-                    "title": "Staffs",
-                    "route": "/staffs",
+                    "title": "Staff Members",
+                    "route": "/staff-members",
                     "icon": 2,
                     "description": "Taking it down a notch and keeping the vibes on ice..."
                 }

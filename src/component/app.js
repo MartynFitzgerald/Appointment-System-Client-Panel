@@ -2,11 +2,13 @@ import React, { useState, useEffect }  from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import { Route, Switch } from 'react-router-dom';
 
+import 'fontsource-roboto';
+
 import Header from "./header";
 import Error from "./error";
 import Appointments from "./tabs/appointments";
 import Customers from "./tabs/customers";
-import Staffs from "./tabs/staffs";
+import StaffMembers from "./tabs/staffMembers";
 import SystemManager from "./tabs/systemManager";
 import Reports from "./tabs/reports";
 import Administrators from "./tabs/appointments";
@@ -18,6 +20,7 @@ const useStyles = makeStyles({
   main: {
     margin: '0',
     height: '100%',
+    width: '100%',
   },
 });
 
@@ -38,7 +41,7 @@ export default function App() {
           <Switch>
             <Route path="/appointments" component={Appointments} exact />
             <Route path="/customers" component={Customers} exact />
-            <Route path="/staffs" component={Staffs} exact />
+            <Route path="/staff-members" component={StaffMembers} exact />
             <Route path="/system-manager" component={SystemManager} exact />
             <Route path="/reports" component={Reports} exact />
             <Route path="/administrators" component={Administrators} exact />
