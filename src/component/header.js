@@ -1,6 +1,8 @@
 import React from "react";
 import { withStyles } from '@material-ui/core/styles';
 import { Drawer, AppBar, CssBaseline, Toolbar, List, Typography, Divider, ListItem, ListItemIcon, ListItemText  } from '@material-ui/core';
+import { Link } from 'react-router-dom';
+
 import TodayIcon from '@material-ui/icons/Today';
 import PeopleIcon from '@material-ui/icons/People';
 import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
@@ -83,7 +85,7 @@ class Header extends React.Component {
                     {
                       header.items.map((item, indexHeader) => {
                         return (
-                          <ListItem button key={indexHeader} >
+                          <ListItem button key={indexHeader} component={Link} to={item.route} >
                             <ListItemIcon>{renderIcons(item.icon)}</ListItemIcon>
                             <ListItemText primary={item.title} />
                           </ListItem>

@@ -32,10 +32,10 @@ export default function App() {
   });
   
   return (
-    <div className={classes.root}>
-      <Header/>
-      <main className={classes.main}>
-        <Switch>
+    <Switch>
+      <div className={classes.root}>
+        <Header/>
+        <main className={classes.main}>
             <Route path="/appointments" component={Appointments} exact />
             <Route path="/customer" component={Customer} exact />
             <Route path="/staff" component={Staff} exact />
@@ -43,8 +43,8 @@ export default function App() {
             <Route path="/reports" component={Reports} exact />
             <Route path="/administrators" component={Administrators} exact />
             <Route component={Error} />
-        </Switch>
-      </main>
-    </div>
+        </main>
+      </div>
+    </Switch>
   )
 }

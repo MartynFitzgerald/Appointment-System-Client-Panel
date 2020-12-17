@@ -7,21 +7,21 @@
                 {
                     "enabled": true,
                     "title": "Appointments",
-                    "route": "appointments",
+                    "route": "/appointments",
                     "icon": 0,
                     "description": "Taking it down a notch and keeping the vibes on ice..."
                 },
                 {
                     "enabled": true,
                     "title": "Customers",
-                    "route": "customers",
+                    "route": "/customers",
                     "icon": 1,
                     "description": "Taking it down a notch and keeping the vibes on ice..."
                 },
                 {
                     "enabled": true,
                     "title": "Staff",
-                    "route": "staff",
+                    "route": "/staff",
                     "icon": 2,
                     "description": "Taking it down a notch and keeping the vibes on ice..."
                 }
@@ -33,14 +33,14 @@
                 {
                     "enabled": true,
                     "title": "Reports",
-                    "route": "reports",
+                    "route": "/reports",
                     "icon": 3,
                     "description": "Taking it down a notch and keeping the vibes on ice..."
                 },
                 {
                     "enabled": true,
                     "title": "System Manager",
-                    "route": "system-manager",
+                    "route": "/system-manager",
                     "icon": 4,
                     "description": "Taking it down a notch and keeping the vibes on ice..."
                 }
