@@ -13,7 +13,7 @@ const  useStyles = theme => ({
 }
 );
 
-class Appointments extends React.Component {
+class Customers extends React.Component {
   render() {
     const { classes } = this.props;
 
@@ -22,7 +22,7 @@ class Appointments extends React.Component {
         <main className={classes.content}>
           <Toolbar />
           <Typography paragraph>
-            Appointments
+            Customers
           </Typography>
         </main>
       </div>
@@ -30,4 +30,4 @@ class Appointments extends React.Component {
   }
 }
 
-export default withStyles(useStyles, { withTheme: true })(Appointments);
+export default withStyles(useStyles, { withTheme: true })(Customers);

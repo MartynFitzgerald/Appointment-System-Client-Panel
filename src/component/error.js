@@ -1,6 +1,6 @@
 import React from "react";
 import { withStyles } from '@material-ui/core/styles';
-import { Box } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 
 const  useStyles = theme => ({
     root: {
@@ -20,9 +20,9 @@ class Error extends React.Component {
     return (
       <div className={classes.root}>
         <main className={classes.content}>
-          <Box component="span" m={1}>
-            Error 404: Page not found, please try again.
-          </Box>
+          <Typography component="h1">
+            Error 404
+          </Typography>
         </main>
       </div>
     );

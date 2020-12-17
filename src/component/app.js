@@ -5,10 +5,10 @@ import { Route, Switch } from 'react-router-dom';
 import Header from "./header";
 import Error from "./error";
 import Appointments from "./tabs/appointments";
-import Customer from "./tabs/appointments";
-import Staff from "./tabs/appointments";
-import SystemManager from "./tabs/appointments";
-import Reports from "./tabs/appointments";
+import Customers from "./tabs/customers";
+import Staffs from "./tabs/staffs";
+import SystemManager from "./tabs/systemManager";
+import Reports from "./tabs/reports";
 import Administrators from "./tabs/appointments";
 
 const useStyles = makeStyles({
@@ -37,8 +37,8 @@ export default function App() {
         <Header/>
         <main className={classes.main}>
             <Route path="/appointments" component={Appointments} exact />
-            <Route path="/customer" component={Customer} exact />
-            <Route path="/staff" component={Staff} exact />
+            <Route path="/customers" component={Customers} exact />
+            <Route path="/staffs" component={Staffs} exact />
             <Route path="/system-manager" component={SystemManager} exact />
             <Route path="/reports" component={Reports} exact />
             <Route path="/administrators" component={Administrators} exact />
