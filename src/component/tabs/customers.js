@@ -5,7 +5,7 @@ import { DataGrid } from '@material-ui/data-grid';
 
 import DeleteIcon from '@material-ui/icons/Delete';
 import AddIcon from '@material-ui/icons/Add';
-import SaveIcon from '@material-ui/icons/Save';
+import EditIcon from '@material-ui/icons/Edit';
 
 const  useStyles = theme => ({
   root: {
@@ -75,9 +75,9 @@ class Customers extends React.Component {
                 color="primary"
                 size="small"
                 className={classes.button}
-                startIcon={<SaveIcon />}
+                startIcon={<EditIcon />}
               >
-                Save
+                Modify
               </Button>
               <Button
                 variant="contained"
