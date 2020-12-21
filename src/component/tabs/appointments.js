@@ -1,6 +1,6 @@
 import React from "react";
 import { withStyles } from '@material-ui/core/styles';
-import { Typography, Toolbar } from '@material-ui/core';
+import { Typography, Toolbar, Grid } from '@material-ui/core';
 
 const  useStyles = theme => ({
   root: {
@@ -20,10 +20,22 @@ class Appointments extends React.Component {
       <div className={classes.root}>
         <main className={classes.content}>
           <Toolbar />
-          <Typography paragraph>
-            Appointments
-          </Typography>
-        </main>
+          <Grid container spacing={1}>
+            <Grid container xs={12} sm={6}>
+              <Typography variant="h4" gutterBottom>
+                Customers
+              </Typography>
+            </Grid>
+
+            <Grid container  xs={12} sm={6} justify="flex-end" >
+
+            </Grid>
+            
+            <Grid item xs={12}>
+
+            </Grid>
+          </Grid>
+        </main> 
       </div>
     );
   }
