@@ -1,6 +1,6 @@
 import React, { useState, useEffect }  from "react";
 import { makeStyles } from '@material-ui/core/styles';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 
 import 'fontsource-roboto';
 
@@ -48,6 +48,7 @@ export default function App() {
             <Route component={Error} />
           </Switch>
         </main>
+        <Redirect exact to="/appointments" />
       </div>
   )
 }

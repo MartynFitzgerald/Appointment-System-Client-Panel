@@ -21,8 +21,8 @@ class SystemManager extends React.Component {
         <main className={classes.content}>
           <Toolbar />
           <Grid container spacing={1}>
-            <Grid container xs={12} sm={6}>
-              <Typography variant="h4" gutterBottom>
+            <Grid container xs={12} sm={6} alignItems="center">
+              <Typography variant="h5">
                 System Manager
               </Typography>
             </Grid>
