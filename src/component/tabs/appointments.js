@@ -1,18 +1,17 @@
 import React from "react";
 import { withStyles } from '@material-ui/core/styles';
-import { Typography, Toolbar, Grid, Button, Switch, FormControlLabel, Paper } from '@material-ui/core';
+import { Typography, Toolbar, Grid, Button, Switch, FormControl, FormControlLabel, Paper, Select, MenuItem } from '@material-ui/core';
 import { green, lightBlue } from '@material-ui/core/colors';
 import { Delete, Add, Edit } from '@material-ui/icons';
 
 import { ViewState, EditingState, GroupingState, IntegratedGrouping, IntegratedEditing } from '@devexpress/dx-react-scheduler';
-import { Scheduler, Resources, Appointments, AppointmentTooltip, AppointmentForm, DragDropProvider, GroupingPanel, WeekView, MonthView, CurrentTimeIndicator,
+//import { Toolbar } from '@devexpress/dx-react-scheduler-material-ui';
+import { Scheduler, Resources, Appointments, AppointmentTooltip, AppointmentForm, DragDropProvider, GroupingPanel, DayView, WeekView, MonthView, CurrentTimeIndicator,
   // eslint-disable-next-line 
   ViewSwitcher,
 } from '@devexpress/dx-react-scheduler-material-ui';
 
 import appointments from '../../data/appointments';
-
-const isWeekOrMonthView = viewName => viewName === 'Week' || viewName === 'Month';
 
 const StaffData = [
   { id: 1, text: 'Martyn', color: lightBlue },
@@ -31,6 +30,24 @@ const  useStyles = theme => ({
     margin: theme.spacing(1),
   },
 });
+
+const isWeekOrMonthView = viewName => viewName === 'Day' || viewName === 'Week'  || viewName === 'Month';
+
+const ViewSelect = ({
+  currentViewName,
+  onChange,
+}) => (
+  <Select
+    labelId="view-label"
+    id="view-select-filled"
+    value={currentViewName}
+    onChange={onChange}
+  >
+    <MenuItem value="Day">Day</MenuItem>
+    <MenuItem value="Week">Week</MenuItem>
+    <MenuItem value="Month">Month</MenuItem>
+  </Select>
+);
 
 const GroupOrderSwitcher = withStyles(useStyles, { name: 'ResourceSwitcher' })(
   ({ isGroupByDate, onChange }) => (
@@ -58,6 +75,7 @@ class AppointmentsClass extends React.Component {
       }],
       groupByDate: isWeekOrMonthView,
       isGroupByDate: true,
+      currentViewName: 'Week',
     };
 
     this.commitChanges = this.commitChanges.bind(this);
@@ -67,6 +85,9 @@ class AppointmentsClass extends React.Component {
         isGroupByDate: !isGroupByDate,
         groupByDate: isGroupByDate ? undefined : isWeekOrMonthView,
       });
+    };
+    this.currentViewNameChange = (e) => {
+      this.setState({ currentViewName: e.target.value });
     };
   }
 
@@ -90,15 +111,8 @@ class AppointmentsClass extends React.Component {
   }
 
   render() {
-    const { data, resources, grouping, groupByDate, isGroupByDate } = this.state;
+    const { data, resources, grouping, groupByDate, isGroupByDate, currentViewName } = this.state;
     const { classes } = this.props;
-
-    if (data.length > 0){
-      data.forEach(i => {
-        i.startDate = new Date(i.startDate);
-        i.endDate = new Date(i.endDate);
-      });
-    }
 
     return (
       <div className={classes.root}>
@@ -112,6 +126,12 @@ class AppointmentsClass extends React.Component {
             </Grid>
 
             <Grid container  xs={6} sm={6} justify="flex-end" >
+              <FormControl variant="outlined" >
+                <ViewSelect
+                  currentViewName={currentViewName}
+                  onChange={this.currentViewNameChange}
+                />
+              </FormControl>
               <GroupOrderSwitcher 
                 isGroupByDate={isGroupByDate} 
                 onChange={this.onGroupOrderChange} 
@@ -149,10 +169,11 @@ class AppointmentsClass extends React.Component {
               <Paper>
                 <Scheduler
                   data={data}
-                  height={750}
+                  height={'100%'}
                 >
                   <ViewState
                     defaultCurrentDate={new Date()} // defaultCurrentDate="2018-05-30"
+                    currentViewName={currentViewName}
                   />
                   <EditingState
                     onCommitChanges={this.commitChanges}
@@ -162,9 +183,13 @@ class AppointmentsClass extends React.Component {
                     groupByDate={groupByDate}
                   />
 
+                  <DayView 
+                    startDayHour={8}
+                    endDayHour={13}
+                  />
                   <WeekView
                     startDayHour={8.5}
-                    endDayHour={17}
+                    endDayHour={17.5}
                   />
                   <MonthView />
 
