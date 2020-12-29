@@ -1,32 +1,17 @@
 import React from "react";
 import { withStyles } from '@material-ui/core/styles';
-import { Typography, Toolbar, Grid, Button, Switch } from '@material-ui/core';
+import { Typography, Toolbar, Grid, Button, Switch, FormControlLabel, Paper } from '@material-ui/core';
 import { green, lightBlue } from '@material-ui/core/colors';
+import { Delete, Add, Edit } from '@material-ui/icons';
 
-import Paper from '@material-ui/core/Paper';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { ViewState, EditingState, GroupingState, IntegratedGrouping, IntegratedEditing } from '@devexpress/dx-react-scheduler';
-import {
-  Scheduler,
-  Resources,
-  Appointments,
-  AppointmentTooltip,
-  AppointmentForm,
-  DragDropProvider,
-  GroupingPanel,
-  WeekView,
-  MonthView,
-  CurrentTimeIndicator,
+import { Scheduler, Resources, Appointments, AppointmentTooltip, AppointmentForm, DragDropProvider, GroupingPanel, WeekView, MonthView, CurrentTimeIndicator,
   // eslint-disable-next-line 
   ViewSwitcher,
 } from '@devexpress/dx-react-scheduler-material-ui';
 
-//import { data as appointments } from './groups';
 import appointments from '../../data/appointments';
 
-import DeleteIcon from '@material-ui/icons/Delete';
-import AddIcon from '@material-ui/icons/Add';
-import EditIcon from '@material-ui/icons/Edit';
 
 const isWeekOrMonthView = viewName => viewName === 'Week' || viewName === 'Month';
 
@@ -50,15 +35,13 @@ const  useStyles = theme => ({
 
 const GroupOrderSwitcher = withStyles(useStyles, { name: 'ResourceSwitcher' })(
   ({
-    isGroupByDate, onChange, classes,
+    isGroupByDate, onChange,
   }) => (
     <FormControlLabel
       control={
         <Switch checked={isGroupByDate} onChange={onChange} />
       }
       label="Grouped by Day"
-      className={classes.formControlLabel}
-      classes={{ label: classes.text }}
     />
   ),
 );
@@ -135,7 +118,7 @@ class AppointmentsClass extends React.Component {
                 variant="contained"
                 color="default"
                 className={classes.button}
-                startIcon={<AddIcon />}
+                startIcon={<Add />}
               >
                 Add
               </Button>
@@ -144,7 +127,7 @@ class AppointmentsClass extends React.Component {
                 color="primary"
                 size="small"
                 className={classes.button}
-                startIcon={<EditIcon />}
+                startIcon={<Edit />}
               >
                 Modify
               </Button>
@@ -152,7 +135,7 @@ class AppointmentsClass extends React.Component {
                 variant="contained"
                 color="secondary"
                 className={classes.button}
-                startIcon={<DeleteIcon />}
+                startIcon={<Delete />}
               >
                 Remove
               </Button>

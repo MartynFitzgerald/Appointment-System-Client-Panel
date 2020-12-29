@@ -2,10 +2,7 @@ import React from "react";
 import { withStyles } from '@material-ui/core/styles';
 import { Typography, Toolbar, Grid, Button } from '@material-ui/core';
 import { DataGrid } from '@material-ui/data-grid';
-
-import DeleteIcon from '@material-ui/icons/Delete';
-import AddIcon from '@material-ui/icons/Add';
-import EditIcon from '@material-ui/icons/Edit';
+import { Delete, Add, Edit } from '@material-ui/icons';
 
 const  useStyles = theme => ({
   root: {
@@ -66,7 +63,7 @@ class Customers extends React.Component {
                 variant="contained"
                 color="default"
                 className={classes.button}
-                startIcon={<AddIcon />}
+                startIcon={<Add />}
               >
                 Add
               </Button>
@@ -75,7 +72,7 @@ class Customers extends React.Component {
                 color="primary"
                 size="small"
                 className={classes.button}
-                startIcon={<EditIcon />}
+                startIcon={<Edit />}
               >
                 Modify
               </Button>
@@ -83,7 +80,7 @@ class Customers extends React.Component {
                 variant="contained"
                 color="secondary"
                 className={classes.button}
-                startIcon={<DeleteIcon />}
+                startIcon={<Delete />}
               >
                 Remove
               </Button>
