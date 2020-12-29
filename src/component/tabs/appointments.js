@@ -1,15 +1,13 @@
 import React from "react";
 import { withStyles } from '@material-ui/core/styles';
-import { Typography, Toolbar, Grid, Button, Switch, FormControl, FormControlLabel, Paper, Select, MenuItem } from '@material-ui/core';
+import { Typography, Grid, Button, Switch, FormControl, FormControlLabel, Paper, Select, MenuItem } from '@material-ui/core';
+import { default  as ToolbarCore } from '@material-ui/core/Toolbar';
 import { green, lightBlue } from '@material-ui/core/colors';
 import { Delete, Add, Edit } from '@material-ui/icons';
 
 import { ViewState, EditingState, GroupingState, IntegratedGrouping, IntegratedEditing } from '@devexpress/dx-react-scheduler';
 //import { Toolbar } from '@devexpress/dx-react-scheduler-material-ui';
-import { Scheduler, Resources, Appointments, AppointmentTooltip, AppointmentForm, DragDropProvider, GroupingPanel, DayView, WeekView, MonthView, CurrentTimeIndicator,
-  // eslint-disable-next-line 
-  ViewSwitcher,
-} from '@devexpress/dx-react-scheduler-material-ui';
+import { Scheduler, Resources, Appointments, AppointmentTooltip, AppointmentForm, DragDropProvider, GroupingPanel, DayView, WeekView, MonthView, CurrentTimeIndicator, DateNavigator, TodayButton, Toolbar, ViewSwitcher } from '@devexpress/dx-react-scheduler-material-ui';
 
 import appointments from '../../data/appointments';
 
@@ -33,23 +31,7 @@ const  useStyles = theme => ({
 
 const isWeekOrMonthView = viewName => viewName === 'Day' || viewName === 'Week'  || viewName === 'Month';
 
-const ViewSelect = ({
-  currentViewName,
-  onChange,
-}) => (
-  <Select
-    labelId="view-label"
-    id="view-select-filled"
-    value={currentViewName}
-    onChange={onChange}
-  >
-    <MenuItem value="Day">Day</MenuItem>
-    <MenuItem value="Week">Week</MenuItem>
-    <MenuItem value="Month">Month</MenuItem>
-  </Select>
-);
-
-const GroupOrderSwitcher = withStyles(useStyles, { name: 'ResourceSwitcher' })(
+const GroupOrderSwitcher = withStyles(useStyles, { name: 'GroupOrderSwitcher' })(
   ({ isGroupByDate, onChange }) => (
     <FormControlLabel
       control={
@@ -76,18 +58,17 @@ class AppointmentsClass extends React.Component {
       groupByDate: isWeekOrMonthView,
       isGroupByDate: true,
       currentViewName: 'Week',
+      currentDate: new Date(),
     };
 
     this.commitChanges = this.commitChanges.bind(this);
+
     this.onGroupOrderChange = () => {
       const { isGroupByDate } = this.state;
       this.setState({
         isGroupByDate: !isGroupByDate,
         groupByDate: isGroupByDate ? undefined : isWeekOrMonthView,
       });
-    };
-    this.currentViewNameChange = (e) => {
-      this.setState({ currentViewName: e.target.value });
     };
   }
 
@@ -111,13 +92,13 @@ class AppointmentsClass extends React.Component {
   }
 
   render() {
-    const { data, resources, grouping, groupByDate, isGroupByDate, currentViewName } = this.state;
+    const { data, resources, grouping, groupByDate, isGroupByDate, currentViewName, currentDate } = this.state;
     const { classes } = this.props;
 
     return (
       <div className={classes.root}>
         <main className={classes.content}>
-          <Toolbar />
+          <ToolbarCore />
           <Grid container spacing={1}>
             <Grid container xs={6} sm={6} alignItems="center">
               <Typography variant="h5">
@@ -126,12 +107,6 @@ class AppointmentsClass extends React.Component {
             </Grid>
 
             <Grid container  xs={6} sm={6} justify="flex-end" >
-              <FormControl variant="outlined" >
-                <ViewSelect
-                  currentViewName={currentViewName}
-                  onChange={this.currentViewNameChange}
-                />
-              </FormControl>
               <GroupOrderSwitcher 
                 isGroupByDate={isGroupByDate} 
                 onChange={this.onGroupOrderChange} 
@@ -172,8 +147,8 @@ class AppointmentsClass extends React.Component {
                   height={'100%'}
                 >
                   <ViewState
-                    defaultCurrentDate={new Date()} // defaultCurrentDate="2018-05-30"
-                    currentViewName={currentViewName}
+                    defaultCurrentDate={currentDate}
+                    defaultCurrentViewName={currentViewName}
                   />
                   <EditingState
                     onCommitChanges={this.commitChanges}
@@ -193,6 +168,12 @@ class AppointmentsClass extends React.Component {
                   />
                   <MonthView />
 
+                  <Toolbar />
+                  <DateNavigator />
+                  <TodayButton />
+                  
+                  <ViewSwitcher />
+
                   <Appointments />
                   <Resources
                     data={resources}
@@ -203,7 +184,7 @@ class AppointmentsClass extends React.Component {
 
                   <AppointmentTooltip />
                   <AppointmentForm />
-
+                  
                   <GroupingPanel />
                   <DragDropProvider />
                   
