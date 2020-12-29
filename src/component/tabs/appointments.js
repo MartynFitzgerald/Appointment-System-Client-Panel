@@ -12,12 +12,11 @@ import { Scheduler, Resources, Appointments, AppointmentTooltip, AppointmentForm
 
 import appointments from '../../data/appointments';
 
-
 const isWeekOrMonthView = viewName => viewName === 'Week' || viewName === 'Month';
 
 const StaffData = [
-  { text: 'Martyn', id: 1, color: lightBlue },
-  { text: 'Dawid', id: 2, color: green },
+  { id: 1, text: 'Martyn', color: lightBlue },
+  { id: 2, text: 'Dawid', color: green }
 ];
 
 const  useStyles = theme => ({
@@ -34,9 +33,7 @@ const  useStyles = theme => ({
 });
 
 const GroupOrderSwitcher = withStyles(useStyles, { name: 'ResourceSwitcher' })(
-  ({
-    isGroupByDate, onChange,
-  }) => (
+  ({ isGroupByDate, onChange }) => (
     <FormControlLabel
       control={
         <Switch checked={isGroupByDate} onChange={onChange} />
@@ -93,10 +90,15 @@ class AppointmentsClass extends React.Component {
   }
 
   render() {
-    const {
-      data, resources, grouping, groupByDate, isGroupByDate,
-    } = this.state;
+    const { data, resources, grouping, groupByDate, isGroupByDate } = this.state;
     const { classes } = this.props;
+
+    if (data.length > 0){
+      data.forEach(i => {
+        i.startDate = new Date(i.startDate);
+        i.endDate = new Date(i.endDate);
+      });
+    }
 
     return (
       <div className={classes.root}>
@@ -169,7 +171,7 @@ class AppointmentsClass extends React.Component {
                   <Appointments />
                   <Resources
                     data={resources}
-                    mainResourceName="priorityId"
+                    mainResourceName="staffId"
                   />
                   <IntegratedGrouping />
                   <IntegratedEditing />
