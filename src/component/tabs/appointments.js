@@ -177,7 +177,7 @@ class AppointmentsClass extends React.Component {
                   height={750}
                 >
                   <ViewState
-                    defaultCurrentDate={new Date()}
+                    defaultCurrentDate={new Date()} // defaultCurrentDate="2018-05-30"
                   />
                   <EditingState
                     onCommitChanges={this.commitChanges}
