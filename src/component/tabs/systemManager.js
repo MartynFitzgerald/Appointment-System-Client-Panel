@@ -1,6 +1,5 @@
 import React from "react";
-import { withStyles } from '@material-ui/core/styles';
-import { Typography, Toolbar, Grid } from '@material-ui/core';
+import { withStyles, Typography, Toolbar, Grid } from '@material-ui/core';
 
 const  useStyles = theme => ({
   root: {

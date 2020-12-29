@@ -1,12 +1,10 @@
 import React from "react";
-import { withStyles } from '@material-ui/core/styles';
-import { Typography, Grid, Button, Switch, FormControl, FormControlLabel, Paper, Select, MenuItem } from '@material-ui/core';
+import { withStyles, Typography, Grid, Button, Switch, FormControlLabel, Paper } from '@material-ui/core';
 import { default  as ToolbarCore } from '@material-ui/core/Toolbar';
 import { green, lightBlue } from '@material-ui/core/colors';
 import { Delete, Add, Edit } from '@material-ui/icons';
 
 import { ViewState, EditingState, GroupingState, IntegratedGrouping, IntegratedEditing } from '@devexpress/dx-react-scheduler';
-//import { Toolbar } from '@devexpress/dx-react-scheduler-material-ui';
 import { Scheduler, Resources, Appointments, AppointmentTooltip, AppointmentForm, DragDropProvider, GroupingPanel, DayView, WeekView, MonthView, CurrentTimeIndicator, DateNavigator, TodayButton, Toolbar, ViewSwitcher } from '@devexpress/dx-react-scheduler-material-ui';
 
 import appointments from '../../data/appointments';
