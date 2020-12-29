@@ -46,16 +46,6 @@ const  useStyles = theme => ({
   button: {
     margin: theme.spacing(1),
   },
-  formControlLabel: {
-    padding: theme.spacing(),
-    paddingLeft: theme.spacing(10),
-  },
-  text: {
-    ...theme.typography.caption,
-    color: theme.palette.text.secondary,
-    fontWeight: 'bold',
-    fontSize: '1rem',
-  },
 });
 
 const GroupOrderSwitcher = withStyles(useStyles, { name: 'ResourceSwitcher' })(
