@@ -25,6 +25,9 @@ const  useStyles = theme => ({
   button: {
     margin: theme.spacing(1),
   },
+  right: {
+    float: 'right',
+  },
 });
 
 const isWeekOrMonthView = viewName => viewName === 'Day' || viewName === 'Week'  || viewName === 'Month';
@@ -35,7 +38,7 @@ const GroupOrderSwitcher = withStyles(useStyles, { name: 'GroupOrderSwitcher' })
       control={
         <Switch checked={isGroupByDate} onChange={onChange} />
       }
-      label="Grouped by Day"
+      label="Group by Day"
     />
   ),
 );
@@ -97,47 +100,50 @@ class AppointmentsClass extends React.Component {
       <div className={classes.root}>
         <main className={classes.content}>
           <ToolbarCore />
-          <Grid container spacing={1}>
-            <Grid container xs={6} sm={6} alignItems="center">
-              <Typography variant="h5">
-                Appointments
-              </Typography>
-            </Grid>
+          <Grid container  direction="column" spacing={1} >
+            
+            <Grid container direction="row" justify="center" alignItems="center" >
+              <Grid item xs={6} sm={6}>
+                <Typography variant="h5">
+                  Appointments
+                </Typography>
+              </Grid>
 
-            <Grid container  xs={6} sm={6} justify="flex-end" >
-              <GroupOrderSwitcher 
-                isGroupByDate={isGroupByDate} 
-                onChange={this.onGroupOrderChange} 
-              />
-              <Button
-                variant="contained"
-                color="default"
-                className={classes.button}
-                startIcon={<Add />}
-              >
-                Add
-              </Button>
-              <Button
-                variant="contained"
-                color="primary"
-                size="small"
-                className={classes.button}
-                startIcon={<Edit />}
-              >
-                Modify
-              </Button>
-              <Button
-                variant="contained"
-                color="secondary"
-                className={classes.button}
-                startIcon={<Delete />}
-              >
-                Remove
-              </Button>
+              <Grid item xs={6} sm={6} >
+                <div className={classes.right}>
+                  <GroupOrderSwitcher 
+                    isGroupByDate={isGroupByDate} 
+                    onChange={this.onGroupOrderChange} 
+                  />
+                  <Button
+                    variant="contained"
+                    color="default"
+                    className={classes.button}
+                    startIcon={<Add />}
+                  >
+                    Add
+                  </Button>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    className={classes.button}
+                    startIcon={<Edit />}
+                  >
+                    Modify
+                  </Button>
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    className={classes.button}
+                    startIcon={<Delete />}
+                  >
+                    Remove
+                  </Button>
+                </div>
+              </Grid>
             </Grid>
             
             <Grid item xs={12}>
-
             <React.Fragment>
               <Paper>
                 <Scheduler

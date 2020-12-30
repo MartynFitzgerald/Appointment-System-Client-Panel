@@ -14,6 +14,9 @@ const  useStyles = theme => ({
   button: {
     margin: theme.spacing(1),
   },
+  right: {
+    float: 'right',
+  },
 });
 
 const columns = [
@@ -50,39 +53,43 @@ class StaffMembers extends React.Component {
       <div className={classes.root}>
         <main className={classes.content}>
           <Toolbar />
-          <Grid container spacing={1}>
-            <Grid container xs={12} sm={6} alignItems="center">
-              <Typography variant="h5">
-                Staff Members
-              </Typography>
-            </Grid>
+          <Grid container  direction="column" spacing={1} >
 
-            <Grid container  xs={12} sm={6} justify="flex-end" >
-              <Button
-                variant="contained"
-                color="default"
-                className={classes.button}
-                startIcon={<Add />}
-              >
-                Add
-              </Button>
-              <Button
-                variant="contained"
-                color="primary"
-                size="small"
-                className={classes.button}
-                startIcon={<Edit />}
-              >
-                Modify
-              </Button>
-              <Button
-                variant="contained"
-                color="secondary"
-                className={classes.button}
-                startIcon={<Delete />}
-              >
-                Remove
-              </Button>
+            <Grid container direction="row" justify="center" alignItems="center" >
+              <Grid item xs={12} sm={6} >
+                <Typography variant="h5">
+                  Staff Members
+                </Typography>
+              </Grid>
+
+              <Grid item xs={12} sm={6} >
+                <div className={classes.right}>
+                  <Button
+                    variant="contained"
+                    color="default"
+                    className={classes.button}
+                    startIcon={<Add />}
+                  >
+                    Add
+                  </Button>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    className={classes.button}
+                    startIcon={<Edit />}
+                  >
+                    Modify
+                  </Button>
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    className={classes.button}
+                    startIcon={<Delete />}
+                  >
+                    Remove
+                  </Button>
+                </div>
+              </Grid>
             </Grid>
             
             <Grid item xs={12}>
