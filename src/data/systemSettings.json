@@ -39,9 +39,16 @@
                 },
                 {
                     "enabled": true,
-                    "title": "System Manager",
-                    "route": "/system-manager",
+                    "title": "User Settings",
+                    "route": "/user-settings",
                     "icon": 4,
+                    "description": "Taking it down a notch and keeping the vibes on ice..."
+                },
+                {
+                    "enabled": true,
+                    "title": "System Settings",
+                    "route": "/system-settings",
+                    "icon": 5,
                     "description": "Taking it down a notch and keeping the vibes on ice..."
                 }
             ]

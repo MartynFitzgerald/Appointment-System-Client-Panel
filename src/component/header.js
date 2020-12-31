@@ -1,13 +1,8 @@
 import React from "react";
-import { withStyles } from '@material-ui/core/styles';
-import { Drawer, AppBar, CssBaseline, Toolbar, List, Typography, Divider, ListItem, ListItemIcon, ListItemText  } from '@material-ui/core';
+import { withStyles, Drawer, AppBar, CssBaseline, Toolbar, List, Typography, Divider, ListItem, ListItemIcon, ListItemText  } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
-import TodayIcon from '@material-ui/icons/Today';
-import PeopleIcon from '@material-ui/icons/People';
-import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
-import SettingsIcon from '@material-ui/icons/Settings';
-import AssessmentIcon from '@material-ui/icons/Assessment';
+import { Today, Person, SupervisedUserCircle, Settings, Assessment, PeopleAlt } from '@material-ui/icons';
 
 import SystemSettings from "../data/systemSettings.json"; 
 
@@ -45,17 +40,19 @@ class Header extends React.Component {
     const renderIcons = (param) => {
       switch(param) {
         case 0:
-          return <TodayIcon />;
+          return <Today />;
         case 1:
-          return <PeopleIcon />;
+          return <PeopleAlt />;
         case 2:
-          return <SupervisedUserCircleIcon />;
+          return <SupervisedUserCircle />;
         case 3:
-          return <AssessmentIcon />;
+          return <Assessment />;
         case 4:
-          return <SettingsIcon />;
+          return <Person />;
+        case 5:
+          return <Settings />;
         default:
-          return <SupervisedUserCircleIcon />;
+          return <SupervisedUserCircle />;
       }
     }
 

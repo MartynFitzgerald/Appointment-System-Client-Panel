@@ -1,5 +1,5 @@
 import React from "react";
-import { withStyles, Typography, Toolbar, Grid, Button } from '@material-ui/core';
+import { withStyles, Typography, Toolbar, Grid, Button, Paper } from '@material-ui/core';
 import { DataGrid } from '@material-ui/data-grid';
 import { Delete, Add, Edit } from '@material-ui/icons';
 
@@ -56,13 +56,13 @@ class StaffMembers extends React.Component {
           <Grid container  direction="column" spacing={1} >
 
             <Grid container direction="row" justify="center" alignItems="center" >
-              <Grid item xs={12} sm={6} >
+              <Grid item xs={6} sm={6} >
                 <Typography variant="h5">
                   Staff Members
                 </Typography>
               </Grid>
 
-              <Grid item xs={12} sm={6} >
+              <Grid item xs={6} sm={6} >
                 <div className={classes.right}>
                   <Button
                     variant="contained"
@@ -93,9 +93,11 @@ class StaffMembers extends React.Component {
             </Grid>
             
             <Grid item xs={12}>
-              <div style={{ height: 650, width: '100%' }}>
-                <DataGrid rows={rows} columns={columns} pageSize={10} checkboxSelection />
-              </div>
+              <Paper>
+                <div style={{ height: 650, width: '100%' }}>
+                  <DataGrid rows={rows} columns={columns} pageSize={10} checkboxSelection />
+                </div>
+              </Paper>
             </Grid>
           </Grid>
         </main> 

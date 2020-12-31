@@ -2,7 +2,7 @@ import React from "react";
 import { withStyles, Typography, Grid, Button, Switch, FormControlLabel, Paper } from '@material-ui/core';
 import { default  as ToolbarCore } from '@material-ui/core/Toolbar';
 import { green, lightBlue } from '@material-ui/core/colors';
-import { Delete, Add, Edit } from '@material-ui/icons';
+import { Add } from '@material-ui/icons';
 
 import { ViewState, EditingState, GroupingState, IntegratedGrouping, IntegratedEditing } from '@devexpress/dx-react-scheduler';
 import { Scheduler, Resources, Appointments, AppointmentTooltip, AppointmentForm, DragDropProvider, GroupingPanel, DayView, WeekView, MonthView, CurrentTimeIndicator, DateNavigator, TodayButton, Toolbar, ViewSwitcher } from '@devexpress/dx-react-scheduler-material-ui';
@@ -123,22 +123,6 @@ class AppointmentsClass extends React.Component {
                   >
                     Add
                   </Button>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    className={classes.button}
-                    startIcon={<Edit />}
-                  >
-                    Modify
-                  </Button>
-                  <Button
-                    variant="contained"
-                    color="secondary"
-                    className={classes.button}
-                    startIcon={<Delete />}
-                  >
-                    Remove
-                  </Button>
                 </div>
               </Grid>
             </Grid>
@@ -186,7 +170,10 @@ class AppointmentsClass extends React.Component {
                   <IntegratedGrouping />
                   <IntegratedEditing />
 
-                  <AppointmentTooltip />
+                  <AppointmentTooltip
+                    showOpenButton
+                    showDeleteButton
+                  />
                   <AppointmentForm />
                   
                   <GroupingPanel />
