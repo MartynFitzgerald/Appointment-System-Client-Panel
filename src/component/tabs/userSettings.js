@@ -1,5 +1,5 @@
 import React from "react";
-import { withStyles, Typography, Toolbar, Grid, Button, Paper, TextField, Divider, FormControl } from '@material-ui/core';
+import { withStyles, Typography, Toolbar, Grid, Button, Paper, TextField, Divider, Box } from '@material-ui/core';
 import { Save } from '@material-ui/icons';
 
 const  useStyles = theme => ({
@@ -51,26 +51,40 @@ class UserSettings extends React.Component {
             
             <Grid item xs={12} >
               <Paper elevation={3} >
-                <Typography variant="h6">
-                  Details
-                </Typography>
+                <Box p={2} >
+                  <Typography variant="h6" >
+                    Details
+                  </Typography>
 
-                <Divider />
+                  <Divider />
 
-                <Grid container direction="row" justify="space-evenly" alignItems="center" >
-                  <Grid item xs={6} sm={6} >
-                    <Typography variant="body1">First Name</Typography>
-                      <TextField variant="outlined" label="E.g. Martyn" style={{width: 200}} />
-                    <Typography variant="body1">Second Name</Typography>
-                      <TextField variant="outlined" label="E.g. Fitzgerald" style={{width: 200}} />
+                  <Grid container direction="row" >
+                    <Grid item xs={6} sm={6} >
+                      <Box p={2} >
+                        <Box py={0.5} >
+                          <Typography variant="body1">First Name</Typography>
+                          <TextField variant="outlined" label="E.g. Martyn" style={{width: 250}} />
+                        </Box>
+                        <Box py={0.5} >
+                          <Typography variant="body1">Second Name</Typography>
+                          <TextField variant="outlined" label="E.g. Fitzgerald" style={{width: 250}} />
+                        </Box>
+                      </Box>
+                    </Grid>
+                    <Grid item xs={6} sm={6} >
+                      <Box p={2} >
+                        <Box py={0.5} >
+                          <Typography variant="body1">Email Address</Typography>
+                          <TextField variant="outlined" label="E.g. Martyn.Fitzgerald@AppoimentSystem.com" style={{width: 500}} />
+                        </Box>
+                        <Box py={0.5} >
+                          <Typography variant="body1">Phone Number</Typography>
+                          <TextField variant="outlined" label="E.g. 07154 685479" style={{width: 250}} />
+                        </Box>
+                      </Box>
+                    </Grid>
                   </Grid>
-                  <Grid item xs={6} sm={6} >
-                    <Typography variant="body1">Email Address</Typography>
-                      <TextField variant="outlined" label="E.g. Martyn.Fitzgerald@AppoimentSystem.com" style={{width: 500}} />
-                    <Typography variant="body1">Phone Number</Typography>
-                      <TextField variant="outlined" label="E.g. 07154 685479" style={{width: 200}} />
-                  </Grid>
-                </Grid>
+                </Box>
               </Paper>
             </Grid>
           </Grid>
