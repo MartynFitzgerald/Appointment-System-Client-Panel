@@ -93,7 +93,7 @@ class StaffMembers extends React.Component {
             </Grid>
             
             <Grid item xs={12}>
-              <Paper>
+              <Paper elevation={3} >
                 <div style={{ height: 650, width: '100%' }}>
                   <DataGrid rows={rows} columns={columns} pageSize={10} checkboxSelection />
                 </div>

@@ -50,7 +50,7 @@ class SystemSettings extends React.Component {
             </Grid>
             
             <Grid item xs={12}>
-              <Paper>
+              <Paper elevation={3} >
 
               </Paper>
             </Grid>

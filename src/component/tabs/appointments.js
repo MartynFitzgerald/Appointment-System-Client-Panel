@@ -127,9 +127,9 @@ class AppointmentsClass extends React.Component {
               </Grid>
             </Grid>
             
-            <Grid item xs={12}>
+            <Grid item xs={12} >
             <React.Fragment>
-              <Paper>
+              <Paper elevation={3} >
                 <Scheduler
                   data={data}
                   height={'100%'}
