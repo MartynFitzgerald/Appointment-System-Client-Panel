@@ -1,5 +1,5 @@
 import React from "react";
-import { withStyles, Typography, Toolbar, Grid, Button, Paper, TextField, Divider, Box } from '@material-ui/core';
+import { withStyles, Typography, Toolbar, Grid, Button, Paper, TextField, Divider, Box, Switch } from '@material-ui/core';
 import { Save } from '@material-ui/icons';
 
 const  useStyles = theme => ({
@@ -80,6 +80,34 @@ class UserSettings extends React.Component {
                         <Box py={0.5} >
                           <Typography variant="body1">Phone Number</Typography>
                           <TextField variant="outlined" label="E.g. 07154 685479" style={{width: 250}} />
+                        </Box>
+                      </Box>
+                    </Grid>
+                  </Grid>
+                </Box>
+              </Paper>
+            </Grid>
+
+            <Grid item xs={12} >
+              <Paper elevation={3} >
+                <Box p={2} >
+                  <Typography variant="h6" >
+                    Preferences
+                  </Typography>
+
+                  <Divider />
+
+                  <Grid container direction="row" >
+                    <Grid item xs={6} sm={6} >
+                      <Box p={2} >
+                        <Box py={0.5} >
+                          <Typography variant="body1">Darkmode</Typography>
+                          <Switch
+                            //checked={state.checkedA}
+                            //onChange={handleChange}
+                            name="checkedA"
+                            inputProps={{ 'aria-label': 'secondary checkbox' }}
+                          />
                         </Box>
                       </Box>
                     </Grid>

@@ -1,5 +1,5 @@
 import React from "react";
-import { withStyles, Typography, Toolbar, Grid, Button, Paper } from '@material-ui/core';
+import { withStyles, Typography, Toolbar, Grid, Button, Paper, TextField, Divider, Box } from '@material-ui/core';
 import { Save } from '@material-ui/icons';
 
 const  useStyles = theme => ({
@@ -49,9 +49,38 @@ class SystemSettings extends React.Component {
               </Grid>
             </Grid>
             
-            <Grid item xs={12}>
+            <Grid item xs={12} >
               <Paper elevation={3} >
+                <Box p={2} >
+                  <Typography variant="h6" >
+                    Appointments View Settings
+                  </Typography>
 
+                  <Divider />
+
+                  <Grid container direction="row" >
+                    <Grid item xs={6} sm={6} >
+                      <Box p={2} >
+                        <Box py={0.5} >
+                          <Typography variant="body1">Work Day Start Time</Typography>
+                          <TextField
+                            id="startTime"
+                            type="time"
+                            defaultValue="09:00"
+                          />
+                        </Box>
+                        <Box py={0.5} >
+                          <Typography variant="body1">Work Day End Time</Typography>
+                          <TextField
+                            id="endTime"
+                            type="time"
+                            defaultValue="17:00"
+                          />
+                        </Box>
+                      </Box>
+                    </Grid>
+                  </Grid>
+                </Box>
               </Paper>
             </Grid>
           </Grid>
