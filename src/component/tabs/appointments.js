@@ -1,5 +1,5 @@
 import React from "react";
-import { withStyles, Typography, Grid, Button, Switch, FormControlLabel, Paper } from '@material-ui/core';
+import { withStyles, Typography, Grid, Button, Switch, FormControl, FormControlLabel, Paper, Select, MenuItem, ListItemText, Checkbox, InputLabel, Input } from '@material-ui/core';
 import { default  as ToolbarCore } from '@material-ui/core/Toolbar';
 import { Add } from '@material-ui/icons';
 
@@ -23,6 +23,10 @@ const  useStyles = theme => ({
   right: {
     float: 'right',
   },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 200
+  },
 });
 
 const isWeekOrMonthView = viewName => viewName === 'Day' || viewName === 'Week'  || viewName === 'Month';
@@ -38,6 +42,8 @@ class AppointmentsClass extends React.Component {
     super(props);
     this.state = {
       data: appointments.filter(appointment => appointment.staffId <= appointmentsStaff.length),
+      staffNames: [],
+
       resources: [{
         fieldName: 'staffId',
         title: 'Staff',
@@ -83,8 +89,8 @@ class AppointmentsClass extends React.Component {
   }
 
   render() {
-    const { data, resources, grouping, groupByDate, isGroupByDate, currentViewName, currentDate } = this.state;
     const { classes } = this.props;
+    const { data, resources, grouping, groupByDate, isGroupByDate, currentViewName, currentDate, staffNames } = this.state;
 
     return (
       <div className={classes.root}>
@@ -101,6 +107,28 @@ class AppointmentsClass extends React.Component {
 
               <Grid item xs={6} sm={6} >
                 <div className={classes.right}>
+                  <FormControl variant="outlined" className={classes.formControl}>
+                    <InputLabel id="staff-multiple-checkbox-label">Staff Members</InputLabel>
+                    <Select
+                      labelId="staff-multiple-checkbox-label"
+                      id="staff-multiple-checkbox"
+                      value={staffNames}
+                      onChange={(event) => this.setState({ staffNames: event.target.value })}
+                      input={<Input />}
+                      multiple
+                      renderValue={(selected) => selected.map((staff) => staff.firstName).join(', ')}
+                      label="Staff Members"
+                    >
+                      {
+                        appointmentsStaff.map((staff) =>
+                          <MenuItem key={staff.id} value={staff}>
+                            <Checkbox checked={staff > -1} />
+                            <ListItemText primary={staff.firstName} />
+                          </MenuItem>
+                        )
+                      }
+                    </Select>
+                  </FormControl>
                   <GroupOrderSwitcher 
                     isGroupByDate={isGroupByDate} 
                     onChange={this.onGroupOrderChange} 
