@@ -1,18 +1,13 @@
 import React from "react";
 import { withStyles, Typography, Grid, Button, Switch, FormControlLabel, Paper } from '@material-ui/core';
 import { default  as ToolbarCore } from '@material-ui/core/Toolbar';
-import { green, lightBlue } from '@material-ui/core/colors';
 import { Add } from '@material-ui/icons';
 
 import { ViewState, EditingState, GroupingState, IntegratedGrouping, IntegratedEditing } from '@devexpress/dx-react-scheduler';
 import { Scheduler, Resources, Appointments, AppointmentTooltip, AppointmentForm, DragDropProvider, GroupingPanel, DayView, WeekView, MonthView, CurrentTimeIndicator, DateNavigator, TodayButton, Toolbar, ViewSwitcher } from '@devexpress/dx-react-scheduler-material-ui';
 
 import appointments from '../../data/appointments';
-
-const StaffData = [
-  { id: 1, text: 'Martyn', color: lightBlue },
-  { id: 2, text: 'Dawid', color: green }
-];
+import appointmentsStaff from '../../data/appointments-staff';
 
 const  useStyles = theme => ({
   root: {
@@ -34,12 +29,7 @@ const isWeekOrMonthView = viewName => viewName === 'Day' || viewName === 'Week' 
 
 const GroupOrderSwitcher = withStyles(useStyles, { name: 'GroupOrderSwitcher' })(
   ({ isGroupByDate, onChange }) => (
-    <FormControlLabel
-      control={
-        <Switch checked={isGroupByDate} onChange={onChange} />
-      }
-      label="Group by Day"
-    />
+    <FormControlLabel control={ <Switch checked={isGroupByDate} onChange={onChange} /> } label="Group by Day" />
   ),
 );
 
@@ -47,11 +37,11 @@ class AppointmentsClass extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: appointments.filter(appointment => appointment.staffId <= StaffData.length),
+      data: appointments.filter(appointment => appointment.staffId <= appointmentsStaff.length),
       resources: [{
         fieldName: 'staffId',
         title: 'Staff',
-        instances: StaffData,
+        instances: appointmentsStaff,
       }],
       grouping: [{
         resourceName: 'staffId',
