@@ -62,11 +62,11 @@ class UserSettings extends React.Component {
                     <Grid item xs={6} sm={6} >
                       <Box p={2} >
                         <Box py={0.5} >
-                          <Typography variant="body1">First Name</Typography>
+                          <Typography variant="body1" style={{ paddingBottom: 5 }}>First Name</Typography>
                           <TextField variant="outlined" label="E.g. Martyn" style={{width: 500}} />
                         </Box>
                         <Box py={0.5} >
-                          <Typography variant="body1">Second Name</Typography>
+                          <Typography variant="body1" style={{ paddingBottom: 5 }}>Second Name</Typography>
                           <TextField variant="outlined" label="E.g. Fitzgerald" style={{width: 500}} />
                         </Box>
                       </Box>
@@ -74,11 +74,11 @@ class UserSettings extends React.Component {
                     <Grid item xs={6} sm={6} >
                       <Box p={2} >
                         <Box py={0.5} >
-                          <Typography variant="body1">Email Address</Typography>
+                          <Typography variant="body1" style={{ paddingBottom: 5 }}>Email Address</Typography>
                           <TextField variant="outlined" label="E.g. Martyn.Fitzgerald@AppoimentSystem.com" style={{width: 500}} />
                         </Box>
                         <Box py={0.5} >
-                          <Typography variant="body1">Phone Number</Typography>
+                          <Typography variant="body1" style={{ paddingBottom: 5 }}>Phone Number</Typography>
                           <TextField variant="outlined" label="E.g. 07154 685479" style={{width: 500}} />
                         </Box>
                       </Box>

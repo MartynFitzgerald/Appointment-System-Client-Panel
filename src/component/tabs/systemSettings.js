@@ -53,7 +53,30 @@ class SystemSettings extends React.Component {
               <Paper elevation={3} >
                 <Box p={2} >
                   <Typography variant="h6" >
-                    Appointments View Settings
+                    General
+                  </Typography>
+
+                  <Divider />
+
+                  <Grid container direction="row" >
+                    <Grid item xs={6} sm={6} >
+                      <Box p={2} >
+                        <Box py={0.5} >
+                          <Typography variant="body1" style={{ paddingBottom: 5 }}>Business Name</Typography>
+                          <TextField variant="outlined" label="E.g. AppointmentSystem" style={{width: 500}} />
+                        </Box>
+                      </Box>
+                    </Grid>
+                  </Grid>
+                </Box>
+              </Paper>
+            </Grid>
+            
+            <Grid item xs={12} >
+              <Paper elevation={3} >
+                <Box p={2} >
+                  <Typography variant="h6" >
+                    Appointments View
                   </Typography>
 
                   <Divider />
