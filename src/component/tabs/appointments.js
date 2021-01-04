@@ -1,5 +1,5 @@
 import React from "react";
-import { withStyles, Typography, Grid, Button, Switch, FormControl, FormControlLabel, Paper, Select, MenuItem, ListItemText, Checkbox, InputLabel, Input } from '@material-ui/core';
+import { withStyles, Typography, Grid, Button, Switch, FormControl, FormControlLabel, Paper, Select, MenuItem, ListItemText, Checkbox, InputLabel } from '@material-ui/core';
 import { default  as ToolbarCore } from '@material-ui/core/Toolbar';
 import { Add } from '@material-ui/icons';
 
@@ -41,9 +41,7 @@ class AppointmentsClass extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: appointments.filter(appointment => appointment.staffId <= appointmentsStaff.length),
-      staffNames: [],
-
+      selectedStaff: [],
       resources: [{
         fieldName: 'staffId',
         title: 'Staff',
@@ -56,6 +54,9 @@ class AppointmentsClass extends React.Component {
       isGroupByDate: true,
       currentViewName: 'Week',
       currentDate: new Date(),
+
+      appointments: appointments.filter(appointment => appointment.staffId <= appointmentsStaff.length),
+      appointmentsConst: appointments.filter(appointment => appointment.staffId <= appointmentsStaff.length),
     };
 
     this.commitChanges = this.commitChanges.bind(this);
@@ -67,30 +68,43 @@ class AppointmentsClass extends React.Component {
         groupByDate: isGroupByDate ? undefined : isWeekOrMonthView,
       });
     };
+
+    this.setSelectedStaff = (selectedStaff) => {
+      let { appointmentsConst } = this.state;
+
+      this.setState({ selectedStaff: selectedStaff }); 
+
+      if (selectedStaff.length > 0) {
+        this.setState({ appointments: appointmentsConst.filter( appointment => selectedStaff.find( a => a.id === appointment.staffId)) });
+      } else {
+        this.setState({ appointments: appointmentsConst });
+      }
+    };
   }
 
   commitChanges({ added, changed, deleted }) {
     this.setState((state) => {
-      let { data } = state;
+      let { appointments } = state;
 
       if (added) {
-        const startingAddedId = data.length > 0 ? data[data.length - 1].id + 1 : 0;
-        data = [...data, { id: startingAddedId, ...added }];
+        const startingAddedId = appointments.length > 0 ? appointments[appointments.length - 1].id + 1 : 0;
+        appointments = [...appointments, { id: startingAddedId, ...added }];
       }
       if (changed) {
-        data = data.map(appointment => (
+        appointments = appointments.map(appointment => (
           changed[appointment.id] ? { ...appointment, ...changed[appointment.id] } : appointment));
       }
       if (deleted !== undefined) {
-        data = data.filter(appointment => appointment.id !== deleted);
+        appointments = appointments.filter(appointment => appointment.id !== deleted);
       }
-      return { data };
+      return { appointments };
     });
   }
 
   render() {
     const { classes } = this.props;
-    const { data, resources, grouping, groupByDate, isGroupByDate, currentViewName, currentDate, staffNames } = this.state;
+    const { appointments, resources, grouping, isGroupByDate, currentViewName, currentDate, selectedStaff } = this.state;
+    const { groupByDate } = this.state;
 
     return (
       <div className={classes.root}>
@@ -112,18 +126,17 @@ class AppointmentsClass extends React.Component {
                     <Select
                       labelId="staff-multiple-checkbox-label"
                       id="staff-multiple-checkbox"
-                      value={staffNames}
-                      onChange={(event) => this.setState({ staffNames: event.target.value })}
-                      input={<Input />}
+                      value={selectedStaff}
+                      onChange={(event) => this.setSelectedStaff(event.target.value)}
                       multiple
-                      renderValue={(selected) => selected.map((staff) => staff.firstName).join(', ')}
+                      renderValue={(selected) => selected.map((staff) => staff.text).join(', ')}
                       label="Staff Members"
                     >
                       {
                         appointmentsStaff.map((staff) =>
                           <MenuItem key={staff.id} value={staff}>
-                            <Checkbox checked={staff > -1} />
-                            <ListItemText primary={staff.firstName} />
+                            <Checkbox checked={selectedStaff.indexOf(staff) > -1} />
+                            <ListItemText primary={staff.text} />
                           </MenuItem>
                         )
                       }
@@ -149,7 +162,7 @@ class AppointmentsClass extends React.Component {
             <React.Fragment>
               <Paper elevation={3} >
                 <Scheduler
-                  data={data}
+                  data={appointments}
                   height={'100%'}
                 >
                   <ViewState

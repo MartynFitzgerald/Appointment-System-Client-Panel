@@ -1,12 +1,12 @@
 [
    {
       "id":0,
-      "firstName":"Martyn Fitzgerald",
+      "text":"Martyn",
       "color":"#6fbf73"
    },
    {
       "id":1,
-      "firstName":"Dawid Fitzgerald",
+      "text":"Dawid",
       "color":"#4dabf5"
    }
 ]
