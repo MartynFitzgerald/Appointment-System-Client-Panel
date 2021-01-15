@@ -37,6 +37,12 @@ const GroupOrderSwitcher = withStyles(useStyles, { name: 'GroupOrderSwitcher' })
   ),
 );
 
+const resourcesConst = [{
+  fieldName: 'staffId',
+  title: 'Staff',
+  instances: appointmentsStaff,
+}];
+
 class AppointmentsClass extends React.Component {
   constructor(props) {
     super(props);
@@ -75,8 +81,16 @@ class AppointmentsClass extends React.Component {
       this.setState({ selectedStaff: selectedStaff }); 
 
       if (selectedStaff.length > 0) {
+        //Deep copy the resourceConst
+        let resourcesTemp = JSON.parse(JSON.stringify(resourcesConst));
+
+        resourcesTemp[0].instances = appointmentsStaff.filter(instance => selectedStaff.find( staff => staff.id === instance.id));
+
+        this.setState({ resources: resourcesTemp });
+
         this.setState({ appointments: appointmentsConst.filter( appointment => selectedStaff.find( a => a.id === appointment.staffId)) });
       } else {
+        this.setState({ resources: resourcesConst });
         this.setState({ appointments: appointmentsConst });
       }
     };
@@ -105,7 +119,7 @@ class AppointmentsClass extends React.Component {
     const { classes } = this.props;
     const { appointments, resources, grouping, isGroupByDate, currentViewName, currentDate, selectedStaff } = this.state;
     const { groupByDate } = this.state;
-
+    
     return (
       <div className={classes.root}>
         <main className={classes.content}>
@@ -121,7 +135,11 @@ class AppointmentsClass extends React.Component {
 
               <Grid item xs={6} sm={6} >
                 <div className={classes.right}>
-                  <FormControl variant="outlined" className={classes.formControl}>
+                  <GroupOrderSwitcher 
+                    isGroupByDate={isGroupByDate} 
+                    onChange={this.onGroupOrderChange} 
+                  />
+                  <FormControl variant="outlined" size="small" className={classes.formControl}>
                     <InputLabel id="staff-multiple-checkbox-label">Staff Members</InputLabel>
                     <Select
                       labelId="staff-multiple-checkbox-label"
@@ -131,6 +149,7 @@ class AppointmentsClass extends React.Component {
                       multiple
                       renderValue={(selected) => selected.map((staff) => staff.text).join(', ')}
                       label="Staff Members"
+                      size="small"
                     >
                       {
                         appointmentsStaff.map((staff) =>
@@ -142,10 +161,6 @@ class AppointmentsClass extends React.Component {
                       }
                     </Select>
                   </FormControl>
-                  <GroupOrderSwitcher 
-                    isGroupByDate={isGroupByDate} 
-                    onChange={this.onGroupOrderChange} 
-                  />
                   <Button
                     variant="contained"
                     color="default"
