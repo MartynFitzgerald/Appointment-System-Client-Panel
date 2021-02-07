@@ -9,6 +9,7 @@ import Error from "./error";
 import Appointments from "./tabs/appointments";
 import Customers from "./tabs/customers";
 import StaffMembers from "./tabs/staffMembers";
+import Branches from "./tabs/branches";
 import SystemSettings from "./tabs/systemSettings";
 import UserSettings from "./tabs/userSettings";
 import Reports from "./tabs/reports";
@@ -42,6 +43,7 @@ export default function App() {
             <Route path="/appointments" component={Appointments} exact />
             <Route path="/customers" component={Customers} exact />
             <Route path="/staff-members" component={StaffMembers} exact />
+            <Route path="/branches" component={Branches} exact />
             <Route path="/system-settings" component={SystemSettings} exact />
             <Route path="/user-settings" component={UserSettings} exact />
             <Route path="/reports" component={Reports} exact />

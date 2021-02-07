@@ -2,7 +2,7 @@ import React from "react";
 import { withStyles, Drawer, AppBar, CssBaseline, Toolbar, List, Typography, Divider, ListItem, ListItemIcon, ListItemText  } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
-import { Today, Person, SupervisedUserCircle, Settings, Assessment, PeopleAlt } from '@material-ui/icons';
+import { Today, Person, SupervisedUserCircle, Settings, Assessment, PeopleAlt, Store } from '@material-ui/icons';
 
 import SystemSettings from "../data/systemSettings.json"; 
 
@@ -46,10 +46,12 @@ class Header extends React.Component {
         case 2:
           return <SupervisedUserCircle />;
         case 3:
-          return <Assessment />;
+          return <Store />;
         case 4:
-          return <Person />;
+          return <Assessment />;
         case 5:
+          return <Person />;
+        case 6:
           return <Settings />;
         default:
           return <SupervisedUserCircle />;
