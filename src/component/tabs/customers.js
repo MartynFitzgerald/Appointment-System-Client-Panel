@@ -3,7 +3,9 @@ import { withStyles, Typography, Toolbar, Grid, Button, Paper } from '@material-
 import { DataGrid } from '@material-ui/data-grid';
 import { Delete, Add, Edit } from '@material-ui/icons';
 
-const  useStyles = theme => ({
+import apiMethods from '../apiMethods';
+
+const useStyles = theme => ({
   root: {
     display: 'flex',
   },
@@ -27,26 +29,37 @@ const columns = [
   { field: 'last_updated_at', headerName: 'Last Updated At', width: 200 }
 ];
 
-const rows = [
-  { id: 1, first_name: 'Jon', last_name: 'Snow',  email_address: 'Jon.Snow@hotmail.com', phone_number: '07123 231323', last_updated_at: '21-12-2020 22:21:35' },
-  { id: 2, first_name: 'Billy', last_name: 'Klen',  email_address: 'Billy.Klen@hotmail.com', phone_number: '07932 645343', last_updated_at: '21-12-2020 22:21:35' },
-  { id: 3, first_name: 'Martyn', last_name: 'Fitzgerald',  email_address: 'Martyn.Fitz@hotmail.com', phone_number: '07212 112233', last_updated_at: '21-12-2020 22:21:35' },
-  { id: 4, first_name: 'Rudi', last_name: 'Tode',  email_address: 'Rudi.Tode@hotmail.com', phone_number: '07212 112233', last_updated_at: '21-12-2020 22:21:35' },
-  { id: 5, first_name: 'Billy', last_name: 'Klen',  email_address: 'Billy.Klen@hotmail.com', phone_number: '07932 645343', permission_level: '2', last_updated_at: '21-12-2020 22:21:35' },
-  { id: 6, first_name: 'Jon', last_name: 'Snow',  email_address: 'Jon.Snow@hotmail.com', phone_number: '07123 231323', permission_level: '1', last_updated_at: '21-12-2020 22:21:35' },
-  { id: 7, first_name: 'Martyn', last_name: 'Fitzgerald',  email_address: 'Martyn.Fitzgerald@hotmail.com', phone_number: '07212 112233', last_updated_at: '21-12-2020 22:21:35' },
-  { id: 8, first_name: 'Rudi', last_name: 'White',  email_address: 'Rudi.Tode@hotmail.com', phone_number: '07212 112233', last_updated_at: '21-12-2020 22:21:35' },
-  { id: 9, first_name: 'Martyn', last_name: 'Fitzgerald',  email_address: 'Martyn.Fitzgerald@hotmail.com', phone_number: '07212 112233', last_updated_at: '21-12-2020 22:21:35' },
-  { id: 10, first_name: 'Rudi', last_name: 'Tode',  email_address: 'Rudi.Tode@hotmail.com', phone_number: '07212 112233', last_updated_at: '21-12-2020 22:21:35' },
-  { id: 11, first_name: 'Martyn', last_name: 'Fitzgerald',  email_address: 'Martyn.Fitzgerald@hotmail.com', phone_number: '07212 112233', last_updated_at: '21-12-2020 22:21:35' },
-  { id: 12, first_name: 'Rudi', last_name: 'White',  email_address: 'Rudi.Tode@hotmail.com', phone_number: '07212 112233', last_updated_at: '21-12-2020 22:21:35' },
-  { id: 13, first_name: 'Martyn', last_name: 'Fitzgerald',  email_address: 'Martyn.Fitzgerald@hotmail.com', phone_number: '07212 112233', last_updated_at: '21-12-2020 22:21:35' },
-  { id: 14, first_name: 'Rudi', last_name: 'Tode',  email_address: 'Rudi.Tode@hotmail.com', phone_number: '07212 112233', last_updated_at: '21-12-2020 22:21:35' },
-];
-
 class Customers extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+        isFetching: true,
+        users: []
+    };
+  }
+
+  componentDidMount() {
+    this.fetchUsers();
+    this.timer = setInterval(() => this.fetchUsers(), 1000 * 60 * 15); // 15 minutes
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timer);
+    this.timer = null;
+  }
+
+  fetchUsers = () => {
+    //Fetch Car Parks From API.
+    apiMethods.read(`USERS`)
+    .then((users) => {
+      this.setState({...this.state, isFetching: true});
+      this.setState({...this.state, users: users});
+    });
+  }
+
   render() {
     const { classes } = this.props;
+    const { users } = this.state;
 
     return (
       <div className={classes.root}>
@@ -94,7 +107,7 @@ class Customers extends React.Component {
             <Grid item xs={12}>
               <Paper elevation={3} >
                 <div style={{ height: '80vh', width: '100%' }}>
-                  <DataGrid rows={rows} columns={columns} pageSize={12} checkboxSelection />
+                  <DataGrid rows={users} columns={columns} pageSize={12} checkboxSelection />
                 </div>
               </Paper>
             </Grid>

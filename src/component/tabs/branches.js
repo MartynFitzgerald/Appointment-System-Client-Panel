@@ -3,6 +3,8 @@ import { withStyles, Typography, Toolbar, Grid, Button, Paper } from '@material-
 import { DataGrid } from '@material-ui/data-grid';
 import { Delete, Add, Edit } from '@material-ui/icons';
 
+import apiMethods from '../apiMethods';
+
 const  useStyles = theme => ({
   root: {
     display: 'flex',
@@ -27,15 +29,37 @@ const columns = [
   { field: 'last_updated_at', headerName: 'Last Updated At', width: 200 }
 ];
 
-const rows = [
-  { id: 1, name: 'Bosco LLC', address: '9672 Mante Row Apt. 575 North Bryana, MA 37759', latitude: '50.4', 	longitude: '-2.4', last_updated_at: '21-12-2020 22:21:35' },
-  { id: 2, name: 'Bosco LLC', address: '9672 Mante Row Apt. 575 North Bryana, MA 37759', latitude: '50.4', 	longitude: '-2.4', last_updated_at: '21-12-2020 22:21:35' },
-  { id: 3, name: 'Bosco LLC', address: '9672 Mante Row Apt. 575 North Bryana, MA 37759', latitude: '50.4', 	longitude: '-2.4', last_updated_at: '21-12-2020 22:21:35' },
-];
-
 class Branches extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+        isFetching: true,
+        branches: []
+    };
+  }
+
+  componentDidMount() {
+    this.fetchBranches();
+    this.timer = setInterval(() => this.fetchBranches(), 1000 * 60 * 15); // 15 minutes
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timer);
+    this.timer = null;
+  }
+
+  fetchBranches = () => {
+    //Fetch Car Parks From API.
+    apiMethods.read(`BRANCHES`)
+    .then((branches) => {
+      this.setState({...this.state, isFetching: true});
+      this.setState({...this.state, branches: branches});
+    });
+  }
+
   render() {
     const { classes } = this.props;
+    const { branches } = this.state;
 
     return (
       <div className={classes.root}>
@@ -83,7 +107,7 @@ class Branches extends React.Component {
             <Grid item xs={12}>
               <Paper elevation={3} >
                 <div style={{ height: '80vh', width: '100%' }}>
-                  <DataGrid rows={rows} columns={columns} pageSize={12} checkboxSelection />
+                  <DataGrid rows={branches} columns={columns} pageSize={12} checkboxSelection />
                 </div>
               </Paper>
             </Grid>
