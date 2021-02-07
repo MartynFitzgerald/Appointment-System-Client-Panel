@@ -20,29 +20,29 @@ const  useStyles = theme => ({
 });
 
 const columns = [
-  { field: 'id', headerName: 'ID', width: 70 },
-  { field: 'firstName', headerName: 'First name', width: 200 },
-  { field: 'lastName', headerName: 'Last name', width: 200 },
-  { field: 'email', headerName: 'Email', width: 350 },
-  { field: 'phoneNumber', headerName: 'Phone Number', width: 200 },
-  { field: 'permissionLevel', headerName: 'Permission Level', width: 200 }
+  { field: 'first_name', headerName: 'First name', width: 200 },
+  { field: 'last_name', headerName: 'Last name', width: 200 },
+  { field: 'email_address', headerName: 'Email Address', width: 350 },
+  { field: 'phone_number', headerName: 'Phone Number', width: 200 },
+  { field: 'permission_level', headerName: 'Permission Level', width: 200 },
+  { field: 'last_updated_at', headerName: 'Last Updated At', width: 200 }
 ];
 
 const rows = [
-  { id: 1, firstName: 'Jon', lastName: 'Snow',  email: 'Jon.Snow@hotmail.com', phoneNumber: '07123 231323', permissionLevel: '1' },
-  { id: 2, firstName: 'Billy', lastName: 'Klen',  email: 'Billy.Klen@hotmail.com', phoneNumber: '07932 645343', permissionLevel: '2' },
-  { id: 3, firstName: 'Martyn', lastName: 'Fitzgerald',  email: 'Martyn.Fitz@hotmail.com', phoneNumber: '07212 112233', permissionLevel: '3' },
-  { id: 4, firstName: 'Rudi', lastName: 'Tode',  email: 'Rudi.Tode@hotmail.com', phoneNumber: '07212 112233', permissionLevel: '3' },
-  { id: 5, firstName: 'Billy', lastName: 'Klen',  email: 'Billy.Klen@hotmail.com', phoneNumber: '07932 645343', permissionLevel: '2' },
-  { id: 6, firstName: 'Jon', lastName: 'Snow',  email: 'Jon.Snow@hotmail.com', phoneNumber: '07123 231323', permissionLevel: '1' },
-  { id: 7, firstName: 'Martyn', lastName: 'Fitzgerald',  email: 'Martyn.Fitzgerald@hotmail.com', phoneNumber: '07212 112233', permissionLevel: '3' },
-  { id: 8, firstName: 'Rudi', lastName: 'White',  email: 'Rudi.Tode@hotmail.com', phoneNumber: '07212 112233', permissionLevel: '3' },
-  { id: 9, firstName: 'Martyn', lastName: 'Fitzgerald',  email: 'Martyn.Fitzgerald@hotmail.com', phoneNumber: '07212 112233', permissionLevel: '3' },
-  { id: 10, firstName: 'Rudi', lastName: 'Tode',  email: 'Rudi.Tode@hotmail.com', phoneNumber: '07212 112233', permissionLevel: '3' },
-  { id: 11, firstName: 'Martyn', lastName: 'Fitzgerald',  email: 'Martyn.Fitzgerald@hotmail.com', phoneNumber: '07212 112233', permissionLevel: '3' },
-  { id: 12, firstName: 'Rudi', lastName: 'White',  email: 'Rudi.Tode@hotmail.com', phoneNumber: '07212 112233', permissionLevel: '3' },
-  { id: 13, firstName: 'Martyn', lastName: 'Fitzgerald',  email: 'Martyn.Fitzgerald@hotmail.com', phoneNumber: '07212 112233', permissionLevel: '3' },
-  { id: 14, firstName: 'Rudi', lastName: 'Tode',  email: 'Rudi.Tode@hotmail.com', phoneNumber: '07212 112233', permissionLevel: '3' },
+  { id: 1, first_name: 'Jon', last_name: 'Snow',  email_address: 'Jon.Snow@hotmail.com', phone_number: '07123 231323', permission_level: '1', last_updated_at: '21-12-2020 22:21:35' },
+  { id: 2, first_name: 'Billy', last_name: 'Klen',  email_address: 'Billy.Klen@hotmail.com', phone_number: '07932 645343', permission_level: '2', last_updated_at: '21-12-2020 22:21:35' },
+  { id: 3, first_name: 'Martyn', last_name: 'Fitzgerald',  email_address: 'Martyn.Fitz@hotmail.com', phone_number: '07212 112233', permission_level: '3', last_updated_at: '21-12-2020 22:21:35' },
+  { id: 4, first_name: 'Rudi', last_name: 'Tode',  email_address: 'Rudi.Tode@hotmail.com', phone_number: '07212 112233', permission_level: '3', last_updated_at: '21-12-2020 22:21:35' },
+  { id: 5, first_name: 'Billy', last_name: 'Klen',  email_address: 'Billy.Klen@hotmail.com', phone_number: '07932 645343', permission_level: '2', last_updated_at: '21-12-2020 22:21:35' },
+  { id: 6, first_name: 'Jon', last_name: 'Snow',  email_address: 'Jon.Snow@hotmail.com', phone_number: '07123 231323', permission_level: '1', last_updated_at: '21-12-2020 22:21:35' },
+  { id: 7, first_name: 'Martyn', last_name: 'Fitzgerald',  email_address: 'Martyn.Fitzgerald@hotmail.com', phone_number: '07212 112233', permission_level: '3', last_updated_at: '21-12-2020 22:21:35' },
+  { id: 8, first_name: 'Rudi', last_name: 'White',  email_address: 'Rudi.Tode@hotmail.com', phone_number: '07212 112233', permission_level: '3', last_updated_at: '21-12-2020 22:21:35' },
+  { id: 9, first_name: 'Martyn', last_name: 'Fitzgerald',  email_address: 'Martyn.Fitzgerald@hotmail.com', phone_number: '07212 112233', permission_level: '3', last_updated_at: '21-12-2020 22:21:35' },
+  { id: 10, first_name: 'Rudi', last_name: 'Tode',  email_address: 'Rudi.Tode@hotmail.com', phone_number: '07212 112233', permission_level: '3', last_updated_at: '21-12-2020 22:21:35' },
+  { id: 11, first_name: 'Martyn', last_name: 'Fitzgerald',  email_address: 'Martyn.Fitzgerald@hotmail.com', phone_number: '07212 112233', permission_level: '3', last_updated_at: '21-12-2020 22:21:35' },
+  { id: 12, first_name: 'Rudi', last_name: 'White',  email_address: 'Rudi.Tode@hotmail.com', phone_number: '07212 112233', permission_level: '3', last_updated_at: '21-12-2020 22:21:35' },
+  { id: 13, first_name: 'Martyn', last_name: 'Fitzgerald',  email_address: 'Martyn.Fitzgerald@hotmail.com', phone_number: '07212 112233', permission_level: '3', last_updated_at: '21-12-2020 22:21:35' },
+  { id: 14, first_name: 'Rudi', last_name: 'Tode',  email_address: 'Rudi.Tode@hotmail.com', phone_number: '07212 112233', permission_level: '3', last_updated_at: '21-12-2020 22:21:35' },
 ];
 
 class StaffMembers extends React.Component {
@@ -94,8 +94,8 @@ class StaffMembers extends React.Component {
             
             <Grid item xs={12}>
               <Paper elevation={3} >
-                <div style={{ height: 650, width: '100%' }}>
-                  <DataGrid rows={rows} columns={columns} pageSize={10} checkboxSelection />
+                <div style={{ height: '80vh', width: '100%' }}>
+                  <DataGrid rows={rows} columns={columns} pageSize={12} checkboxSelection />
                 </div>
               </Paper>
             </Grid>
