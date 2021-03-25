@@ -1,5 +1,6 @@
 {
 	"name": "Appointment System - Staff Panel",
+	"dateFormat": "DD/MM/YY HH:mm:ss",
 	"headers": [
         {
             "name": "First Header",

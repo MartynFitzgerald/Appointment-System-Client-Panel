@@ -28,7 +28,7 @@ exports.create = async function(item, data) {
       body: JSON.stringify(data)
     }
     return fetch(`${endpointAWS}/${item}/${apiKey}`, header).then((response) => response.json()).then((result) => {
-      return result.status;
+      return result;
     });
   } catch (error) {
     return console.error(error);
@@ -46,7 +46,25 @@ exports.update = async function(item, data) {
       body: JSON.stringify(data)
     }
     return fetch(`${endpointAWS}/${item}/${apiKey}`, header).then((response) => response.json()).then((result) => {
-      return result.status;
+      return result;
+    });
+  } catch (error) {
+    return console.error(error);
+  }
+}
+
+exports.delete = async function(item, data) {
+  try {
+    let header = {
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data)
+    }
+    return fetch(`${endpointAWS}/${item}/${apiKey}`, header).then((response) => response.json()).then((result) => {
+      return result;
     });
   } catch (error) {
     return console.error(error);

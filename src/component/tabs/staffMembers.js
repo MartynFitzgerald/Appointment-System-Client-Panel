@@ -1,9 +1,13 @@
 import React from "react";
+import moment from "moment";
 import { withStyles, Typography, Toolbar, Grid, Button, Paper } from '@material-ui/core';
 import { DataGrid } from '@material-ui/data-grid';
 import { Delete, Add, Edit } from '@material-ui/icons';
 
+import SystemSettings from "../../data/systemSettings.json"; 
+
 import apiMethods from '../apiMethods';
+import StaffMembersDialog from "../dialogs/staffMembers";
 
 const  useStyles = theme => ({
   root: {
@@ -24,10 +28,10 @@ const  useStyles = theme => ({
 const columns = [
   { field: 'first_name', headerName: 'First name', width: 200 },
   { field: 'last_name', headerName: 'Last name', width: 200 },
-  { field: 'email_address', headerName: 'Email Address', width: 350 },
+  { field: 'email_address', headerName: 'Email Address', width: 325 },
   { field: 'phone_number', headerName: 'Phone Number', width: 200 },
-  { field: 'permission_level', headerName: 'Permission Level', width: 200 },
-  { field: 'last_updated_at', headerName: 'Last Updated At', width: 200 }
+  { field: 'permission_level', headerName: 'Permission Level', width: 175 },
+  { field: 'last_updated_at', headerName: 'Last Updated At', width: 250 }
 ];
 
 class StaffMembers extends React.Component {
@@ -35,32 +39,40 @@ class StaffMembers extends React.Component {
     super(props);
     this.state = {
         isFetching: true,
-        staffMembers: []
+        staffMembers: [],
+        selectedStaffMembersIds: [],
+        showDialog: false,
+        action: 'Add',
+        timer: null
     };
   }
 
   componentDidMount() {
     this.fetchStaffMembers();
-    this.timer = setInterval(() => this.fetchStaffMembers(), 1000 * 60 * 15); // 15 minutes
+    this.setState({timer: setInterval(() => this.fetchStaffMembers(), 1000 * 60 * 15)});
   }
 
   componentWillUnmount() {
-    clearInterval(this.timer);
-    this.timer = null;
+    clearInterval(this.state.timer);
   }
 
   fetchStaffMembers = () => {
     //Fetch Car Parks From API.
     apiMethods.read(`STAFFMEMBERS`)
     .then((staffMembers) => {
-      this.setState({...this.state, isFetching: true});
-      this.setState({...this.state, staffMembers: staffMembers});
+      staffMembers.forEach(x => { x.last_updated_at = moment(x.last_updated_at).format(SystemSettings.dateFormat)});
+      this.setState({isFetching: true, staffMembers: staffMembers});
     });
+  }
+
+  handleClose = () => {
+    this.fetchStaffMembers();
+    this.setState({showDialog: false});
   }
 
   render() {
     const { classes } = this.props;
-    const { staffMembers } = this.state;
+    const { staffMembers, selectedStaffMembersIds, showDialog, action } = this.state;
 
     return (
       <div className={classes.root}>
@@ -82,6 +94,9 @@ class StaffMembers extends React.Component {
                     color="default"
                     className={classes.button}
                     startIcon={<Add />}
+                    onClick={() => {
+                      this.setState({showDialog: true, action: 'Add'});
+                    }}
                   >
                     Add
                   </Button>
@@ -90,6 +105,10 @@ class StaffMembers extends React.Component {
                     color="primary"
                     className={classes.button}
                     startIcon={<Edit />}
+                    onClick={() => {
+                      this.setState({showDialog: true, action: 'Modify'});
+                    }}
+                    disabled={selectedStaffMembersIds.length < 1}
                   >
                     Modify
                   </Button>
@@ -98,6 +117,10 @@ class StaffMembers extends React.Component {
                     color="secondary"
                     className={classes.button}
                     startIcon={<Delete />}
+                    onClick={() => {
+                      this.setState({showDialog: true, action: 'Remove'});
+                    }}
+                    disabled={selectedStaffMembersIds.length < 1}
                   >
                     Remove
                   </Button>
@@ -108,11 +131,12 @@ class StaffMembers extends React.Component {
             <Grid item xs={12}>
               <Paper elevation={3} >
                 <div style={{ height: '80vh', width: '100%' }}>
-                  <DataGrid rows={staffMembers} columns={columns} pageSize={12} checkboxSelection />
+                  <DataGrid rows={staffMembers} columns={columns} pageSize={12} selectionModel={selectedStaffMembersIds} onSelectionChange={x => this.setState({selectedStaffMembersIds: x.rowIds})} checkboxSelection />
                 </div>
               </Paper>
             </Grid>
           </Grid>
+          <StaffMembersDialog showDialog={showDialog} close={this.handleClose} action={action} selectedItems={staffMembers.filter(x => selectedStaffMembersIds.includes(x.id))}/>
         </main> 
       </div>
     );
