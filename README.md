@@ -40,7 +40,7 @@ npm start
 
 <div>
   <img src="Images/Image1.jpg"/>
-  <img src="Images/Image2.jpg"/>
-  <img src="Images/Image3.jpg"/>
-  <img src="Images/Image4.jpg"/>
+  <img src="Images/Image2.JPG"/>
+  <img src="Images/Image3.JPG"/>
+  <img src="Images/Image4.JPG"/>
 </div>
